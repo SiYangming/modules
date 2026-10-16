@@ -79,7 +79,7 @@
                     {
                         "id": "test"
                     },
-                    "test_eccDNA_summary.csv:md5,0d1df304e1662e3fb78fa3da5b62efd4"
+                    "test_eccDNA_summary.csv:md5,9e4792320c591de5ab7c1cffc014ddf2"
                 ]
             ],
             {
@@ -92,7 +92,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-10-16T08:33:09.487546",
+        "timestamp": "2026-10-16T15:01:41.494806",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

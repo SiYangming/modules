@@ -1,0 +1,4 @@
+eccdna_id,eccdna_type,read_id,regions,chr,start0,end0,strand,length,copy_number,num_segments,is_inter_chr
+UeccDNA1,Uecc,sim_uecc_0001|unit_1|761|1.0,chr1:7140-7901_-,chr1,7140,7901,-,761,1.0,1,False
+UeccDNA2,Uecc,sim_uecc_0002|unit_1|608|1.0,chr1:816-1424_-,chr1,816,1424,-,608,1.0,1,False
+UeccDNA3,Uecc,sim_uecc_0003|unit_1|384|1.0,chr1:6505-6889_+,chr1,6505,6889,+,384,1.0,1,False
