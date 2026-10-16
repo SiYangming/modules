@@ -1,0 +1,131 @@
+name: "circleseeker"
+description: Detect and characterize eccDNA from PacBio HiFi long-read sequencing data
+keywords:
+  - eccDNA
+  - long-read
+  - circular-dna
+  - hifi
+  - pacbio
+tools:
+  - "circleseeker":
+      description: "Comprehensive detection and characterization of extrachromosomal circular DNA (eccDNA) from PacBio HiFi sequencing data"
+      homepage: "https://github.com/YaoxinBio/CircleSeeker"
+      documentation: "https://github.com/YaoxinBio/CircleSeeker#readme"
+      tool_dev_url: "https://github.com/YaoxinBio/CircleSeeker"
+      licence:
+        - "GPL-3.0-only"
+      identifier: ""
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - reads:
+        type: file
+        description: Input HiFi reads (FASTA or FASTQ, gzipped or plain). FASTQ is converted to FASTA inside the process.
+        pattern: "*.{fa,fasta,fastq,fq,fa.gz,fasta.gz,fastq.gz,fq.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1929"
+          - edam: http://edamontology.org/format_1930 # FASTQ
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing reference information
+          e.g. `[ id:'ref' ]`
+    - fasta:
+        type: file
+        description: Reference genome FASTA file
+        pattern: "*.{fa,fasta,fa.gz,fasta.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1929"
+
+output:
+  summary:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - ${prefix}_eccDNA_summary.csv:
+          type: file
+          description: Combined eccDNA table (one row per eccDNA)
+          pattern: "*_eccDNA_summary.csv"
+          ontologies:
+            - edam: http://edamontology.org/format_3752 # CSV
+  summary_txt:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - ${prefix}_summary.txt:
+          type: file
+          description: Text summary statistics report
+          pattern: "*_summary.txt"
+          ontologies:
+            - edam: http://edamontology.org/format_2330 # Textual format
+  report:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - ${prefix}_report.html:
+          type: file
+          description: Interactive HTML report
+          pattern: "*_report.html"
+          ontologies:
+            - edam: http://edamontology.org/format_2331 # HTML
+  versions_circleseeker:
+    - - ${task.process}:
+          type: string
+          description: The name of the process
+      - circleseeker:
+          type: string
+          description: The name of the tool
+      - circleseeker --version 2>&1 | sed 's/CircleSeeker //':
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - ${task.process}:
+          type: string
+          description: The name of the process
+      - circleseeker:
+          type: string
+          description: The name of the tool
+      - circleseeker --version 2>&1 | sed 's/CircleSeeker //':
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@SiYangming"
+maintainers:
+  - "@SiYangming"
+containers:
+  docker:
+    linux/arm64:
+      name: community.wave.seqera.io/library/circleseeker:1.6.1--18f8aa8fb8aa4912
+      build_id: bd-18f8aa8fb8aa4912_1
+      scan_id: sc-4469d303c904706f_1
+    linux/amd64:
+      name: community.wave.seqera.io/library/circleseeker:1.6.1--30c163cc47db14e8
+      build_id: bd-30c163cc47db14e8_1
+      scan_id: sc-3e4b9302e5b8b974_1
+  singularity:
+    linux/amd64:
+      name: oras://community.wave.seqera.io/library/circleseeker:1.6.1--7d50725cbb4bb8c2
+      build_id: bd-7d50725cbb4bb8c2_1
+      https: https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a3/a30b0118879aeb2a81314bfd1983f0e3027f5ad578fff6e9d91e1f10b0391e4c/data
+    linux/arm64:
+      name: oras://community.wave.seqera.io/library/circleseeker:1.6.1--4c008f807d7f2e50
+      build_id: bd-4c008f807d7f2e50_1
+      https: https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/df/df731b91c9bf4a2fcb9d3ba164a864d4d77fa70206ca6ab4f0f192a6cffbf99f/data
+  conda:
+    linux/amd64:
+      lock_file: modules/nf-core/circleseeker/.conda-lock/linux_amd64-bd-30c163cc47db14e8_1.txt
+    linux/arm64:
+      lock_file: modules/nf-core/circleseeker/.conda-lock/linux_arm64-bd-18f8aa8fb8aa4912_1.txt

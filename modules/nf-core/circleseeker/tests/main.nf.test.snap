@@ -1,0 +1,101 @@
+{
+    "homo_sapiens - pacbio - fasta - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_eccDNA_summary.csv:md5,23a0719861c2ce91fc0dda3ea1ebc913"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_report.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    [
+                        "CIRCLESEEKER",
+                        "circleseeker",
+                        "1.6.1"
+                    ]
+                ],
+                "report": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_report.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "summary": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_eccDNA_summary.csv:md5,23a0719861c2ce91fc0dda3ea1ebc913"
+                    ]
+                ],
+                "summary_txt": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_circleseeker": [
+                    [
+                        "CIRCLESEEKER",
+                        "circleseeker",
+                        "1.6.1"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-10-16T08:00:42.382975",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
+    },
+    "homo_sapiens - pacbio - fasta": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_eccDNA_summary.csv:md5,0d1df304e1662e3fb78fa3da5b62efd4"
+                ]
+            ],
+            {
+                "versions_circleseeker": [
+                    [
+                        "CIRCLESEEKER",
+                        "circleseeker",
+                        "1.6.1"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-10-16T08:33:09.487546",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
+    }
+}

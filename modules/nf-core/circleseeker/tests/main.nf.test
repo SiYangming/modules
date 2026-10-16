@@ -1,0 +1,73 @@
+nextflow_process {
+
+    name "Test Process CIRCLESEEKER"
+    script "../main.nf"
+    process "CIRCLESEEKER"
+    config "./nextflow.config"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "circleseeker"
+
+    test("homo_sapiens - pacbio - fasta") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/pacbio/fasta/circleseeker_test_reads.fa', checkIfExists: true)
+                ]
+                input[1] = [
+                    [ id:'ref' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/pacbio/fasta/circleseeker_test_ref.fa', checkIfExists: true)
+                ]
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assertAll(
+                // summary.txt / report.html embed run timestamps and are not
+                // byte-reproducible; snapshot the stable summary CSV only.
+                { assert snapshot(
+                    process.out.summary,
+                    process.out.findAll { key, val -> key.startsWith('versions') }
+                ).match() },
+                { assert file(process.out.summary_txt.get(0).get(1)).exists() },
+                { assert file(process.out.report.get(0).get(1)).exists() }
+            )
+        }
+
+    }
+
+    test("homo_sapiens - pacbio - fasta - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/pacbio/fasta/circleseeker_test_reads.fa', checkIfExists: true)
+                ]
+                input[1] = [
+                    [ id:'ref' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/pacbio/fasta/circleseeker_test_ref.fa', checkIfExists: true)
+                ]
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assertAll(
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+}
